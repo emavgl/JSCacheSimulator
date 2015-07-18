@@ -40,7 +40,7 @@ $(function() {
         Tutti i valori sono calcolati come esponenti.
         Ad esempio, se scelgo una memoria da 16MB allora memorySize = 24.
         Poiché pow(2, 24) = 16MB.
-        
+
         Questa scelta è determinata dalla facilità di fare calcoli tra numeri grossi semplicemente
         sottraendo o sommando gli esponenti, poiché con stessa base.
     */
@@ -124,10 +124,10 @@ function simulaOperazione() {
     /*
         Funzione che viene chiamata se si preme il pulsante per generare un input casuale.
         Come funziona:
-            
+
     */
     $("#randomInputButton").on("click", simulaOperazione);
-    
+
 
 	/*
 		Funzione che si occupa di convertire un numero decimale
@@ -180,15 +180,15 @@ function simulaOperazione() {
         CreateNewStatistics()
         Funzione che crea un nuovo blocco di statistiche.
         Inizializza il nuovo blocco con le impostazioni della simulazione corrente.
-        
+
         Questa funzione viene chiamata ogni qual volta si avvia una nuova simulazione.
         Cosa deve fare? Deve creare un nuovo blocco che sarà renderizzato ogni istruzione.
         Il nuovo blocco non deve sostituire quello vecchio, ma porsi sopra. In modo da
         poter comparare le varie simulazioni.
-        
+
         - Se esiste già un elemento "simulazione_corrente" allora rimuove a quell'elemento l'id.
         - crea un nuovo blocco e gli assegna l'etichetta si "simulazione_corrente".
-        
+
         Il passaggio di etichetta è importante, così mi permette di renderizzare ogni istruzione
         solo il blocco relativo alla simulazione in atto.
     */
@@ -273,10 +273,10 @@ function simulaOperazione() {
         Cosa deve fare:
         - Deve inizializzare variabili globali
         - Ed impostare graficamente la cache con i dati in possesso
-        
+
         La funzione è divisa in due. La funzione submit chiama la funzione init
         che inizializza le variabili relative alle impostazioni inserite.
-        
+
         La funzione è divisa in due poiché, nel caso in cui la Set Associative si trasforma
         in una Fully Associative viene fatta una chiamata ricorsiva alla funzione init.
     */
@@ -429,7 +429,7 @@ function simulaOperazione() {
         La funzione posiziona blocco si occupa di chiamare il metodo posiziona blocco presente
         nell'oggetto MyCache.
         Inoltre si occupa di chiamare le funzioni renderizzaCache.
-        
+
         La variabile result si occupa di immagazzinare il risultato del posizionamento.
         Ovvero se vi è stata una cache HIT o una cache MISS.
     */
@@ -497,22 +497,22 @@ function simulaOperazione() {
         tabella.empty();
         tabella.append('<table id="addresstable" class="table table-striped"><thead><tr><th>' + indirizzo + '</th></tr></thead><tbody id="taddress"></tbody></table>');
         var postocolonne = $("#taddress");
-        postocolonne.append('<tr><td>-------------------</td><td>' + memorySize + ' B Address</td><td>-------------------</td></tr>');
+        postocolonne.append('<tr><td>-------------------</td><td>' + memorySize + ' b Address</td><td>-------------------</td></tr>');
         if (mappingMethod == "Direct") {
-            postocolonne.append('<tr><td>Tag: ' + bitsInTag + ' B</td><td>Index: ' + blocksInCache + ' B</td><td>Offset: ' + offSet + ' B</td></tr>');
+            postocolonne.append('<tr><td>Tag: ' + bitsInTag + ' b</td><td>Index: ' + blocksInCache + ' b</td><td>Offset: ' + offSet + ' b</td></tr>');
             postocolonne.append('<tr><td>' + tagBinaryBit + '</td><td>' + indexBinaryBit + '</td><td>' + offSetBinaryBit + '</td></tr>');
             divTabella.append('INDEX = Identifies a blockposition in cache <b>' + parseInt(indexBinaryBit, 2) + '</b><br>');
             divTabella.append("OFFSET = Identifies the bytes sequence inside the block<br>");
             divTabella.append("TAG = Label associated with the position of the block<br><br>");
         }
         if (mappingMethod == "Fully") {
-            postocolonne.append('<tr><td>Tag: ' + bitsInTag + ' B</td><td> </td><td>Offset: ' + offSet + ' B</td></tr>');
+            postocolonne.append('<tr><td>Tag: ' + bitsInTag + ' b</td><td> </td><td>Offset: ' + offSet + ' b</td></tr>');
             postocolonne.append('<tr><td>' + tagBinaryBit + '</td><td> </td><td>' + offSetBinaryBit + '</td></tr>');
             divTabella.append("OFFSET = Identifies the bytes sequence inside the block<br>");
             divTabella.append("TAG = Label associated with the position of the block<br><br>");
         }
         if (mappingMethod == "Set") {
-            postocolonne.append('<tr><td>Tag: ' + bitsInTag + ' B</td><td>Index: ' + setsInCache + ' B</td><td>Offset: ' + offSet + ' B</td></tr>');
+            postocolonne.append('<tr><td>Tag: ' + bitsInTag + ' b</td><td>Index: ' + setsInCache + ' b</td><td>Offset: ' + offSet + ' b</td></tr>');
             postocolonne.append('<tr><td>' + tagBinaryBit + '</td><td>' + indexBinaryBit + '</td><td>' + offSetBinaryBit + '</td></tr>');
             divTabella.append('INDEX = Identifies a blockposition in cache <b>' + parseInt(indexBinaryBit, 2) + '</b><br>');
             divTabella.append("OFFSET = Identifies the bytes sequence inside the block<br>");
