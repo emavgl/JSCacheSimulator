@@ -7,5 +7,7 @@ are replaced, according to various parameters that can be set up for each simula
 The simulator was written in HTML5, using JQuery and Bootstrap libraries. To use it, open the file "index.html"
 (index.html) with a recent browser.
 
+[run online](https://emavgl.github.io/JSCacheSimulator/)
+
 [how to use the simulator](documentation.pdf)
 
