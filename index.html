@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="./vendors/jquery/jquery-2.1.1.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="./vendors/bootstrap/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="./vendors/bootstrap/bootstrap-theme.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="./vendors/bootstrap/bootstrap.min.js"></script>
+    <script src="./resources/js/frame.js"></script>
+    <script src="./resources/js/cache.js"></script>
+    <script src="./resources/js/cachedirect.js"></script>
+    <script src="./resources/js/cacheSAssociative.js"></script>
+    <script src="./resources/js/cachefassociative.js"></script>
+    <script src="./resources/js/accessoArray.js"></script>
+    <script src="./resources/js/main.js"></script>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="./resources/css/mystyle.css" media="screen" />
+
+    <title>JSCacheSimulator</title>
+    <link rel="shortcut icon" href="./resources/images/favicon.ico" />
+</head>
+
+<body>
+    <div id="container" class="container">
+
+        <div id="titolo" class="row">
+            <h1>JSCacheSimulator</h1>
+            <h4>This page shows how an L1 cache works, given a list of memory accesses. Various Cache parameters, as size, and mapping methods can be specified. Stats for each simulation are shown below. Click <a href="./howtouse/documentation.pdf">here</a> for an explanation.<br><b>Legend:</b> { T = TAG;  L.A = Last Access }</h4>
+
+        </div>
+
+        <div id="rigaBottoni" class="row">
+            <div class="col-md-2">
+                <button type="button" id="newButton" class="btn btn-primary btn btn-block setButton" data-toggle="modal" data-target="#newCacheModal">New</button>
+            </div>
+            <div class="col-md-2">
+                <button type="button" id="nextStepButton" disabled="disabled" class="btn btn-primary btn btn-block setButton">Step</button>
+            </div>
+            <div class="col-md-1">
+                <button type="button" id="runButton" disabled="disabled" class="btn btn-primary btn btn-block setButton">Run</button>
+            </div>
+            <div class="col-md-2">
+                <button type="button" class="btn btn-primary btn btn-block setButton" onClick="history.go(0)">Reset</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div id="addressaccess" class="col-md-3">
+                <h3>Memory Access</h3>
+                <div id="tabellaPlace">
+
+                </div>
+            </div>
+
+            <div id="byte_address" class="col-md-5">
+                <h3>Address</h3>
+                <div id="ByteAddress">
+
+                </div>
+            </div>
+
+            <div id="cache" class="col-md-4">
+                <h3>Cache</h3>
+                <table class="table table-striped">
+                    <thead>
+                        <tr id="addHeadTable">
+                            <th>
+                                Frames
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="tdirect">
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+        <div id="statistics" class="row">
+        </div>
+    </div>
+
+    <div id="newCacheModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title">New Simulation</h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <h5><b>RAM SIZE:</b></h5>
+                        <select id="sceltaRam" class="form-control">
+                            <option value="24">16 MB</option>
+                            <option value="23">8 MB</option>
+                            <option value="22">4 MB</option>
+                        </select>
+                    </div>
+                    <div>
+                        <h5><b>CACHE SIZE:</b></h5>
+                        <select id="cachesize" class="form-control">
+                            <option value="13">8 KB</option>
+                            <option value="12">4 KB</option>
+                        </select>
+                    </div>
+                    <div>
+                        <h5><b>BLOCK SIZE:</b></h5>
+                        <select id="blocksize" class="form-control">
+                            <option value="9">512 B</option>
+                            <option value="8">256 B</option>
+                        </select>
+                    </div>
+                    <div>
+                        <h5><b>METHOD:</b></h5>
+                        <select id="method" class="form-control">
+                            <option value="Direct">Direct mapped</option>
+                            <option value="Fully">Fully Associative</option>
+                            <option value="Set">Set Associative</option>
+                        </select>
+                    </div>
+                    <div>
+                        <h5><b>Set:</b></h5>
+                        <select id="setsize" class="form-control">
+                            <option value="3">8 Blocks</option>
+                            <option value="2">4 Blocks</option>
+                            <option value="1">2 Blocks</option>
+                        </select>
+                    </div>
+                    <div>
+                        <h5><b>Algorithm:</b></h5>
+                        <select id="algorithm" class="form-control">
+                            <option value="LRU">LRU</option>
+                            <option value="FIFO">FIFO</option>
+                            <option value="Random">Random</option>
+                        </select>
+                    </div>
+                    <div>
+                        <h5><b>Addresses in input (HEX)</b></h5>
+                        <div>
+                            <button type="button" id="randomInputButton" class="btn btn-default btn-xs">Generate Random</button>
+                            <div class="form-group">
+                                <input type="file" id="importFromFileButton">
+                            </div>
+                        </div>
+                        <textarea id="textarea1" class="form-control" rows="15"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button id="submitButton" type="button" class="btn btn-primary" data-dismiss="modal">Submit</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
+
+
+</body>
+
+</html>
+
+<!--
+Copyright (C) 2015  Emanuele Viglianisi
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see http://www.gnu.org/licenses/.
+-->
